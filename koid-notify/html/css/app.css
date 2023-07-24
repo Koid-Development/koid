@@ -1,0 +1,84 @@
+@font-face {
+    font-family: Agave;
+    src: url('../fonts/agave.ttf');
+}
+
+* {
+    font-family: Agave;
+}
+
+body {
+    overflow: hidden;
+}
+
+/*.container {
+    transition: .5s;
+    position: absolute;
+    bottom: 6%;
+    right: 2%;
+    width: 15vw;
+    max-height: auto;
+    padding: 0.2vw;
+    padding-bottom: .6vw;
+	background-color: rgba(31, 31, 31, .7);
+    box-shadow: 0 0 10px rgba(31, 31, 31, 0.3), 0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3), 0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3);
+    border-radius: .1vw;
+}*/
+
+.container {
+    transition: .5s;
+    position: relative;
+    margin: 0 auto;
+    clear: left;
+    max-height: 100vw;
+    width: 15vw;
+    z-index: auto;
+    padding: 0.2vw;
+    padding-bottom: .6vw;
+	background-color: rgba(31, 31, 31, .7);
+    box-shadow: 0 0 10px rgba(31, 31, 31, 0.3), 0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3), 0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3);
+    border-radius: .1vw;
+}
+
+.header {
+    letter-spacing: .1vh;
+    position: relative;
+    top: 5%;
+    margin-top: .7vh;
+    margin-left: 5%;
+    color: #fff;
+    font-size: 1.3vh;
+}
+
+.message {
+    letter-spacing: .05vh;
+    position:relative;
+    margin-left: 5%;
+    font-size: .7vw;
+    color: #ccc;
+}
+
+#type-icon {
+    position: absolute;
+    top: 20%;
+    text-shadow: 0 0 .7vw rgb(3, 173, 9, 0.8);
+    color: rgba(3, 173, 9, 0.8);
+    /*background-color: rgba(3,173,9);*/
+    border-radius: .5vw;
+    margin-right: 0.5vw;
+    padding: .2vw;
+    font-size: 1.3vw;
+    right: 2%;
+}
+
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}

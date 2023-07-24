@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.joordih.me/css/all.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/app.css" />
+    <script src="./js/app.js"></script>
+
+    <script>
+      setTimeout(() => {
+        window.dispatchEvent(
+          new MessageEvent("message", {
+            data: {
+              action: "notification",
+              data: {
+                title: "Test",
+                message: "This is a test notification",
+                timeout: 1500,
+              },
+            },
+          })
+        );
+      }, 1500);
+    </script>
+    <title>Koid Notifications</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="title">
+          <span id="title">Initializing Koid Notifications</span>
+        </div>
+      </div>
+
+      <div class="icon">
+        <i class="fa-duotone fa-message-check fa-shake" id="type-icon"></i>
+      </div>
+      <div class="message" id="message"></div>
+    </div>
+  </body>
+</html>
