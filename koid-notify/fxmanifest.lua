@@ -21,7 +21,8 @@ files {
     'html/index.html',
     'html/js/app.js',
     'html/fonts/agave.ttf',
-    'html/js/notify-sound.mp3',
+    'html/js/sounds/entry.ogg',
+    'html/js/sounds/exit.ogg',
     'html/css/app.css'
 }
 

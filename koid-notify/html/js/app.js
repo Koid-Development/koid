@@ -1,6 +1,6 @@
 $(() => {
-  let entry = new Audio("./js/sounds/entry.mp3");
-  let exit = new Audio("./js/sounds/exit.mp3");
+  let entry = new Audio("./js/sounds/entry.ogg");
+  let exit = new Audio("./js/sounds/exit.ogg");
   const title = document.getElementById("title");
   const message = document.getElementById("message");
   const notify = document.getElementsByClassName("container");
@@ -19,7 +19,7 @@ $(() => {
             "entryAnimation 1.4s cubic-bezier(0.68, -0.6, 0.32, 1.6) 0s 1 normal both",
         });
         setTimeout(() => {
-          entry.volume = 0.5;
+          entry.volume = 0.2;
           entry.play();
         }, 400);
       }, 100);
@@ -29,7 +29,7 @@ $(() => {
           animation:
             "exitAnimation 0.8s cubic-bezier(0.36, 0, 0.66, -0.56) 0s 1 normal both",
         });
-        exit.volume = 0.5;
+        exit.volume = 0.2;
         exit.play();
         $.post("http://koid-notify/activeNotification", JSON.stringify(false));
       }, data.duration);
