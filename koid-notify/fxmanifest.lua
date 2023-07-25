@@ -15,6 +15,16 @@ client_scripts {
     'client/client.lua',
 }
 
+ui_page 'html/index.html'
+
+files {
+    'html/index.html',
+    'html/js/app.js',
+    'html/fonts/agave.ttf',
+    'html/js/notify-sound.mp3',
+    'html/css/app.css'
+}
+
 shared_scripts {
-    '@koid-core/shard/koidcore.lua'
+    '@koid-core/shared/koidcore.lua'
 }

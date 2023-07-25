@@ -11,20 +11,6 @@ body {
     overflow: hidden;
 }
 
-/*.container {
-    transition: .5s;
-    position: absolute;
-    bottom: 6%;
-    right: 2%;
-    width: 15vw;
-    max-height: auto;
-    padding: 0.2vw;
-    padding-bottom: .6vw;
-	background-color: rgba(31, 31, 31, .7);
-    box-shadow: 0 0 10px rgba(31, 31, 31, 0.3), 0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3), 0 0 10px rgba(31, 31, 31, 0.3),0 0 10px rgba(31, 31, 31, 0.3);
-    border-radius: .1vw;
-}*/
-
 .container {
     transition: .5s;
     position: relative;
@@ -46,7 +32,7 @@ body {
     top: 5%;
     margin-top: .7vh;
     margin-left: 5%;
-    color: #fff;
+    color: #f8f4ec;
     font-size: 1.3vh;
 }
 
@@ -55,7 +41,7 @@ body {
     position:relative;
     margin-left: 5%;
     font-size: .7vw;
-    color: #ccc;
+    color: #f8f4ec;
 }
 
 #type-icon {
@@ -63,7 +49,6 @@ body {
     top: 20%;
     text-shadow: 0 0 .7vw rgb(3, 173, 9, 0.8);
     color: rgba(3, 173, 9, 0.8);
-    /*background-color: rgba(3,173,9);*/
     border-radius: .5vw;
     margin-right: 0.5vw;
     padding: .2vw;
@@ -71,14 +56,27 @@ body {
     right: 2%;
 }
 
-@keyframes myAnim {
+@keyframes entryAnimation {
 	0% {
-		opacity: 0;
 		transform: translateY(-250px);
 	}
 
 	100% {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+@keyframes exitAnimation {
+	0% {
+        opacity: 1;
+		transform: scale(1);
+		transform-origin: 50% 0%;
+	}
+
+	100% {
+		transform: scale(0);
+		transform-origin: 50% 0%;
+        opacity: 0;
 	}
 }

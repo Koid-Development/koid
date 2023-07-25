@@ -13,10 +13,10 @@ description 'Koid essentials library'
 
 client_scripts {
     'config.lua',
-    'shared/KoidCore.lua',
-    'shared/Utils/Utils.lua',
-    'shared/Player/Player.lua',
-    'shared/Game/Game.lua',
+    'shared/koidcore.lua',
+    'shared/utilities/utils.lua',
+    'shared/player/player.lua',
+    'shared/game/game.lua',
 }
 
 shared_scripts {

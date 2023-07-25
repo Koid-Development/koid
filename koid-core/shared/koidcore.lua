@@ -22,6 +22,4 @@ function KoidCore:switch(value, cases)
 end
 
 setmetatable(KoidCore, { __index = KoidCore })
-
 exports('getSharedObject', KoidCore.getSharedObject)
-exports('switch', KoidCore.switch)
