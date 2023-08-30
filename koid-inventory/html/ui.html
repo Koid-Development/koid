@@ -1,0 +1,823 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Jav inventario</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Signika"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.joordih.me/css/all.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/font-awesome-animation@1.1.1/css/font-awesome-animation.min.css"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/ui.css" />
+    <script src="js/inventory.js"></script>
+
+    <script>
+      $(function () {
+        $("#dialog").dialog({
+          autoOpen: false,
+          clickOutside: true,
+        });
+      });
+
+      $(() => {
+        /*SendNUIMessage(
+                {
+                    action = "nearPlayers",
+                    foundAny = foundPlayers,
+                    players = elements,
+                    item = data.item
+                }*/
+
+        window.dispatchEvent(
+          new MessageEvent("message", {
+            data: {
+              action: "nearPlayers",
+              foundAny: true,
+              players: [
+                {
+                  label: "Harpy",
+                  player: {
+                    id: 1,
+                    name: "Harpy",
+                    source: 1,
+                  },
+                },
+              ],
+              item: {
+                name: "WEAPON_APPISTOL",
+                count: 1,
+                canRemove: true,
+              },
+            },
+          })
+        );
+
+        window.dispatchEvent(
+          new MessageEvent("message", {
+            data: {
+              action: "show",
+            },
+          })
+        );
+
+        window.dispatchEvent(
+          new MessageEvent("message", {
+            data: {
+              action: "display",
+              type: "normal",
+            },
+          })
+        );
+
+        window.dispatchEvent(
+          new MessageEvent("message", {
+            data: {
+              action: "setItems",
+              itemList: [
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+              ],
+              fastItems: [
+                {
+                  name: "WEAPON_APPISTOL",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cannabis",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cloth",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocaine",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+                {
+                  name: "cocacola",
+                  count: 1,
+                  canRemove: true,
+                  weight: 1,
+                },
+              ],
+            },
+          })
+        );
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="ui">
+      <div class="inventory">
+        <div id="playerInventory"></div>
+        <div id="playerInventoryFastItems"></div>
+
+        <img
+          class="logo"
+          title="a"
+          src="https://cdn.discordapp.com/attachments/1128737459103088680/1146178475225530448/Screenshot_20230812_010308_2.png"
+        />
+
+        <div id="parte-arriba">
+          <div id="controls">
+            <!--<button class="control" id="drop">TIRAR</button>
+            <button class="control" id="give">DAR</button>
+            <input type="number" class="control" id="count" value="1" />-->
+            <div class="material-symbols-outlined" id="boton-ropa">
+              checkroom
+            </div>
+            <div class="material-symbols-outlined" id="boton-cerrar">
+              cancel
+            </div>
+          </div>
+        </div>
+
+        <div class="parte-abajo">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/434px-Unknown_person.jpg"
+            class="avatar"
+          />
+          <div class="info">
+            <div class="nombre-info" id="contenido-info">
+              Nombre :
+              <span class="nombre" style="color: rgb(201, 201, 201)"
+                >Ramon Jimenez</span
+              >
+            </div>
+            <div class="id" id="contenido-info">
+              ID :
+              <span class="id-info" style="color: rgb(201, 201, 201)">121</span>
+            </div>
+            <div class="peso" id="contenido-info">
+              <div class="barra">
+                <div class="barra-progreso"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-lateral">
+          <div class="boton" id="sombrero">
+            <i class="fa-duotone fa-hat-cowboy"></i>
+          </div>
+          <div class="boton" id="mascara">
+            <i class="fa-duotone fa-luchador-mask"></i>
+          </div>
+
+          <div class="boton" id="gafas">
+            <i class="fa-duotone fa-sunglasses"></i>
+          </div>
+
+          <div class="boton">
+            <img src="https://i.ibb.co/jZpfMQq/GY1MfnR.png" />
+          </div>
+          <div class="boton">
+            <ion-icon name="shirt"></ion-icon>
+          </div>
+          <div class="boton">
+            <i class="fa-duotone fa-vest"></i>
+          </div>
+          <div class="boton">
+            <i class="fa-duotone fa-mitten"></i>
+          </div>
+
+          <div class="boton">
+            <i class="fa-duotone fa-backpack"></i>
+          </div>
+          <div class="boton">
+            <img src="https://i.ibb.co/CmP5gZt/hlloBrG.png" />
+          </div>
+          <div class="boton">
+            <img src="https://i.ibb.co/dpWGtwr/mFfeuT2.png" />
+          </div>
+        </div>
+        <div>
+          <div id="otherInventory">
+            <div id="noSecondInventoryMessage"></div>
+          </div>
+          <div>
+            <span class="info-div2" style="float: left"></span>
+            <div class="info-div"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dialog">
+      <div id="nearPlayers"></div>
+    </div>
+
+    <div id="hotbar">
+      <div class="container-hot">
+        <div class="hot-box" id="hotslot-1"></div>
+        <div class="hot-box" id="hotslot-2"></div>
+        <div class="hot-box" id="hotslot-3"></div>
+        <div class="hot-box" id="hotslot-4"></div>
+        <div class="hot-box" id="hotslot-5"></div>
+      </div>
+      <p class="hot-text"></p>
+    </div>
+  </body>
+</html>
