@@ -1,12 +1,19 @@
 local koidcore = exports["koid-core"]:getSharedObject()
 
+RegisterCommand('testnotify', function ()
+    triggerNotify(
+        'Test', 
+        'This is a test notification', 
+        4500
+    )
+end)
+
 function sendDataToFront(action, data)
     SendNUIMessage({
         action = action,
         data = data
     })
 end
-
 
 local activeNotification = false
 function sendNotification(title, message, duration)
@@ -21,7 +28,11 @@ function sendNotification(title, message, duration)
     })
 end
 
-RegisterNetEvent('koid-notify:sendNotification', function (data)
+RegisterNUICallback('activeNotification', function (active)
+    activeNotification = active;
+end)
+
+RegisterNetEvent('koid-notify:notify', function (data)
     local timeout = data.duration or 3500
     if activeNotification then
         SetTimeout(timeout, function ()
@@ -32,22 +43,14 @@ RegisterNetEvent('koid-notify:sendNotification', function (data)
     end
 end)
 
-RegisterNUICallback('activeNotification', function (active)
-    activeNotification = active;
-end)
-
 function triggerNotify(title, message, duration)
-    TriggerEvent('koid-notify:sendNotification', {
+    TriggerEvent('koid-notify:notify', {
         title = title,
         message = message,
         duration = duration or 4500
     })
 end
 
-exports('sendNotify', function (title, message, timeout)
+exports('notify', function (title, message, timeout)
     triggerNotify(title, message, timeout)
-end)
-
-RegisterCommand('testnotify', function ()
-    triggerNotify('Test', 'This is a test notification', 4500)
 end)

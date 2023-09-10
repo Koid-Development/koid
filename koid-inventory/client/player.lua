@@ -23,9 +23,9 @@ AddEventHandler(
     end
 )
 
-RegisterNetEvent("jav_inventoryhud:openPlayerInventory")
+RegisterNetEvent("koid-inventory:openPlayerInventory")
 AddEventHandler(
-    "jav_inventoryhud:openPlayerInventory",
+    "koid-inventory:openPlayerInventory",
     function(target, playerName)
         targetPlayer = target
         targetPlayerName = playerName
@@ -40,7 +40,7 @@ end
 
 function setPlayerInventoryData()
     ESX.TriggerServerCallback(
-        "jav_inventoryhud:getPlayerInventory",
+        "koid-inventory:getPlayerInventory",
         function(data)
             SendNUIMessage(
                 {
@@ -169,7 +169,7 @@ RegisterNUICallback(
             end
 
             TriggerServerEvent(
-                "jav_inventoryhud:tradePlayerItem",
+                "koid-inventory:tradePlayerItem",
                 GetPlayerServerId(PlayerId()),
                 targetPlayer,
                 data.item.type,
@@ -201,7 +201,7 @@ RegisterNUICallback(
             end
 
             TriggerServerEvent(
-                "jav_inventoryhud:tradePlayerItem",
+                "koid-inventory:tradePlayerItem",
                 targetPlayer,
                 GetPlayerServerId(PlayerId()),
                 data.item.type,

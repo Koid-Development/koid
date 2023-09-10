@@ -4,5 +4,6 @@
         "missing-parameter",
         "param-type-mismatch",
         "lowercase-global"
-    ]
+    ],
+    "liveServer.settings.port": 5502
 }

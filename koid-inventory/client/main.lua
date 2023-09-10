@@ -371,7 +371,7 @@ function getInventoryWeight(inventory)
 end
 
 function loadPlayerInventory()
-    ESX.TriggerServerCallback("jav_inventoryhud:getPlayerInventory",
+    ESX.TriggerServerCallback("koid-inventory:getPlayerInventory",
         function(data)
             items = {}
             local fastItems = {}
@@ -496,7 +496,7 @@ function loadPlayerInventory()
                 end
             end
 
-            ESX.TriggerServerCallback('jav_inventoryhud:Info', function(name , weight)
+            ESX.TriggerServerCallback('koid-inventory:Info', function(name , weight)
 
                 SendNUIMessage({
                     action = 'show:partearriba',
@@ -527,15 +527,15 @@ function setNotHurt()
     FreezeEntityPosition(PlayerPedId(), false)
 end
 
-RegisterNetEvent("jav_inventoryhud:openTrunkInventory")
-AddEventHandler("jav_inventoryhud:openTrunkInventory", function(data, blackMoney, inventory, weapons)
+RegisterNetEvent("koid-inventory:openTrunkInventory")
+AddEventHandler("koid-inventory:openTrunkInventory", function(data, blackMoney, inventory, weapons)
     setTrunkInventoryData(data, blackMoney, inventory, weapons)
     openTrunkInventory()
 end)
 
-RegisterNetEvent("jav_inventoryhud:refreshTrunkInventory")
+RegisterNetEvent("koid-inventory:refreshTrunkInventory")
 AddEventHandler(
-    "jav_inventoryhud:refreshTrunkInventory",
+    "koid-inventory:refreshTrunkInventory",
     function(data, blackMoney, inventory, weapons)
         setTrunkInventoryData(data, blackMoney, inventory, weapons)
     end
@@ -672,14 +672,14 @@ local itemsDB = nil
 
 RegisterNetEvent('esx:playerLoaded', function()
     Wait(750)
-    ESX.TriggerServerCallback('jav_inventoryhud:getAllItems', function(items)
+    ESX.TriggerServerCallback('koid-inventory:getAllItems', function(items)
         itemsDB = items
     end)
 end)
 
 AddEventHandler('onResourceStart', function()
     Wait(750)
-    ESX.TriggerServerCallback('jav_inventoryhud:getAllItems', function(items)
+    ESX.TriggerServerCallback('koid-inventory:getAllItems', function(items)
         itemsDB = items
     end)
 end)
@@ -1065,8 +1065,8 @@ Citizen.CreateThread(
         end
 )
 --Add Items--
-RegisterNetEvent('jav_inventoryhud:client:addItem')
-AddEventHandler('jav_inventoryhud:client:addItem', function(itemname, itemlabel)
+RegisterNetEvent('koid-inventory:client:addItem')
+AddEventHandler('koid-inventory:client:addItem', function(itemname, itemlabel)
     local data = {name = itemname, label = itemlabel}
     SendNUIMessage({type = "addInventoryItem", addItemData = data})
 end)
@@ -1102,7 +1102,7 @@ RegisterCommand('cachear', function()
 		local searchPlayerPed = GetPlayerPed(target)
 
 		if IsEntityPlayingAnim(searchPlayerPed, "random@mugging3", "handsup_standing_base", 3) or IsEntityDead(searchPlayerPed) or IsPedRagdoll(searchPlayerPed) then
-			TriggerServerEvent("javi_inventoryhud:cachear", targetId)
+			TriggerServerEvent("koid-inventory:cachear", targetId)
 		else
 			ESX.ShowNotification("No tiene las manos levantadas y tampoco está inconsciente.")
 		end
@@ -1111,14 +1111,14 @@ RegisterCommand('cachear', function()
 	end
 end)
 
-RegisterNetEvent('javi_inventoryhud:cachear')
-AddEventHandler('javi_inventoryhud:cachear', function(target, targetPed)
+RegisterNetEvent('koid-inventory:cachear')
+AddEventHandler('koid-inventory:cachear', function(target, targetPed)
     FreezeEntityPosition(targetPed, true)
-    TriggerEvent('inventoryhud:openPlayerInventory', GetPlayerServerId(target))
+    TriggerEvent('koid-inventory:openPlayerInventory', GetPlayerServerId(target))
 end)
 
-RegisterNetEvent('inventoryhud:openPlayerInventory')
-AddEventHandler('inventoryhud:openPlayerInventory', function(target)
+RegisterNetEvent('koid-inventory:openPlayerInventory')
+AddEventHandler('koid-inventory:openPlayerInventory', function(target)
     setPlayerInventoryData()
     openPlayerInventory()
 end)

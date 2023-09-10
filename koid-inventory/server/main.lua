@@ -7,7 +7,7 @@ TriggerEvent("esx:getSharedObject",
         ESX = obj
     end
 )
-ESX.RegisterServerCallback("jav_inventoryhud:getPlayerInventory",
+ESX.RegisterServerCallback("koid-inventory:getPlayerInventory",
     function(source, cb, target)
         local targetXPlayer = ESX.GetPlayerFromId(target)
         
@@ -18,8 +18,8 @@ ESX.RegisterServerCallback("jav_inventoryhud:getPlayerInventory",
         end
     end
 )
-RegisterServerEvent("jav_inventoryhud:tradePlayerItem")
-AddEventHandler("jav_inventoryhud:tradePlayerItem", function(from, target, type, itemName, itemCount)
+RegisterServerEvent("koid-inventory:tradePlayerItem")
+AddEventHandler("koid-inventory:tradePlayerItem", function(from, target, type, itemName, itemCount)
     local _source = from
     
     local sourceXPlayer = ESX.GetPlayerFromId(_source)
@@ -61,7 +61,7 @@ RegisterCommand("openinventory", function(source, args, rawCommand)
         local targetXPlayer = ESX.GetPlayerFromId(target)
         
         if targetXPlayer ~= nil then
-            TriggerClientEvent("jav_inventoryhud:openPlayerInventory", source, target, targetXPlayer.name)
+            TriggerClientEvent("koid-inventory:openPlayerInventory", source, target, targetXPlayer.name)
         else
             xPlayer.showNotification(_U("no_player"))
             TriggerClientEvent("chatMessage", source, "^1" .. _U("no_player"))
@@ -79,7 +79,7 @@ end)
 function GetLicenses(source)
     TriggerEvent('esx_license:getLicenses', source, function(licenses)
             
-            TriggerClientEvent('jav_inventoryhud:GetLicenses', source, licenses)
+            TriggerClientEvent('koid-inventory:GetLicenses', source, licenses)
     end)
 
 
@@ -95,18 +95,18 @@ CreateThread(function()
 
 end)
 
-ESX.RegisterServerCallback('jav_inventoryhud:getAllItems', function(source, cb)
+ESX.RegisterServerCallback('koid-inventory:getAllItems', function(source, cb)
     cb(itemsDB)
 end)
 
-ESX.RegisterServerCallback('jav_inventoryhud:Info', function(source, cb)
+ESX.RegisterServerCallback('koid-inventory:Info', function(source, cb)
     local xPlayer = ESX.GetPlayerFromId(source)
     local weight = xPlayer.getWeight()
     local name = xPlayer.getName()
     cb(name , weight)
 end)
 
-RegisterServerEvent('javi_inventoryhud:cachear')
-AddEventHandler('javi_inventoryhud:cachear', function(targetId)
-    TriggerClientEvent('javi_inventoryhud:cachear', source, targetId, GetPlayerPed(targetId))
+RegisterServerEvent('koid-inventory:cachear')
+AddEventHandler('koid-inventory:cachear', function(targetId)
+    TriggerClientEvent('koid-inventory:cachear', source, targetId, GetPlayerPed(targetId))
 end)

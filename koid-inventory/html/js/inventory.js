@@ -28,11 +28,11 @@ $(function () {
   });
 
   $("#sombrero").click(function () {
-    $.post("http://jav_inventoryhud/sombrero", JSON.stringify({}));
+    $.post("http://koid-inventory/sombrero", JSON.stringify({}));
   });
 
   $("#mascara").click(function () {
-    $.post("http://jav_inventoryhud/mascara", JSON.stringify({}));
+    $.post("http://koid-inventory/mascara", JSON.stringify({}));
   });
 });
 
@@ -170,7 +170,7 @@ window.addEventListener("message", function (event) {
       $("#dialog").dialog("close");
       player = $(this).data("player");
       $.post(
-        "http://jav_inventoryhud/GiveItem",
+        "http://koid-inventory/GiveItem",
         JSON.stringify({
           player: player,
           item: event.data.item,
@@ -232,7 +232,7 @@ window.addEventListener("message", function (event) {
 });
 
 function closeInventory() {
-  $.post("http://jav_inventoryhud/NUIFocusOff", JSON.stringify({}));
+  $.post("http://koid-inventory/NUIFocusOff", JSON.stringify({}));
 }
 
 function inventorySetup(items, fastItems) {
@@ -310,7 +310,7 @@ function makeDraggables() {
         disableInventory(500);
 
         $.post(
-          "http://jav_inventoryhud/PutIntoFast",
+          "http://koid-inventory/PutIntoFast",
           JSON.stringify({
             item: itemData,
             slot: 1,
@@ -331,7 +331,7 @@ function makeDraggables() {
       ) {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoFast",
+          "http://koid-inventory/PutIntoFast",
           JSON.stringify({
             item: itemData,
             slot: 2,
@@ -352,7 +352,7 @@ function makeDraggables() {
       ) {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoFast",
+          "http://koid-inventory/PutIntoFast",
           JSON.stringify({
             item: itemData,
             slot: 3,
@@ -373,7 +373,7 @@ function makeDraggables() {
       ) {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoFast",
+          "http://koid-inventory/PutIntoFast",
           JSON.stringify({
             item: itemData,
             slot: 4,
@@ -394,7 +394,7 @@ function makeDraggables() {
       ) {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoFast",
+          "http://koid-inventory/PutIntoFast",
           JSON.stringify({
             item: itemData,
             slot: 5,
@@ -565,7 +565,7 @@ $(document).ready(function () {
       if (itemData.usable) {
         disableInventory(300);
         $.post(
-          "http://jav_inventoryhud/UseItem",
+          "http://koid-inventory/UseItem",
           JSON.stringify({
             item: itemData,
           })
@@ -592,7 +592,7 @@ $(document).ready(function () {
       if (itemData.canRemove) {
         disableInventory(300);
         $.post(
-          "http://jav_inventoryhud/GetNearPlayers",
+          "http://koid-inventory/GetNearPlayers",
           JSON.stringify({
             item: itemData,
           })
@@ -619,7 +619,7 @@ $(document).ready(function () {
       if (itemData.canRemove) {
         disableInventory(300);
         $.post(
-          "http://jav_inventoryhud/DropItem",
+          "http://koid-inventory/DropItem",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -637,7 +637,7 @@ $(document).ready(function () {
       if (type === "trunk" && itemInventory === "second") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/TakeFromTrunk",
+          "http://koid-inventory/TakeFromTrunk",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -646,7 +646,7 @@ $(document).ready(function () {
       } else if (type === "property" && itemInventory === "second") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/TakeFromProperty",
+          "http://koid-inventory/TakeFromProperty",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -656,7 +656,7 @@ $(document).ready(function () {
       } else if (type === "player" && itemInventory === "second") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/TakeFromPlayer",
+          "http://koid-inventory/TakeFromPlayer",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -665,7 +665,7 @@ $(document).ready(function () {
       } else if (type === "normal" && itemInventory === "fast") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/TakeFromFast",
+          "http://koid-inventory/TakeFromFast",
           JSON.stringify({
             item: itemData,
           })
@@ -673,7 +673,7 @@ $(document).ready(function () {
       } else if (type === "glovebox" && itemInventory === "second") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/TakeFromGlovebox",
+          "http://koid-inventory/TakeFromGlovebox",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -682,7 +682,7 @@ $(document).ready(function () {
       } else if (type === "storage" && itemInventory === "second") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/TakeFromStorage",
+          "http://koid-inventory/TakeFromStorage",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -692,7 +692,7 @@ $(document).ready(function () {
         disableInventory(500);
         console.log("Comprado");
         $.post(
-          "http://jav_inventoryhud/BuyItem",
+          "http://koid-inventory/BuyItem",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -701,7 +701,7 @@ $(document).ready(function () {
       } else if (type === "disc-property" && itemInventory === "second") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/TakeFromDiscProperty",
+          "http://koid-inventory/TakeFromDiscProperty",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -719,7 +719,7 @@ $(document).ready(function () {
       if (type === "trunk" && itemInventory === "main") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoTrunk",
+          "http://koid-inventory/PutIntoTrunk",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -728,7 +728,7 @@ $(document).ready(function () {
       } else if (type === "property" && itemInventory === "main") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoProperty",
+          "http://koid-inventory/PutIntoProperty",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -738,7 +738,7 @@ $(document).ready(function () {
       } else if (type === "glovebox" && itemInventory === "main") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoGlovebox",
+          "http://koid-inventory/PutIntoGlovebox",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -747,7 +747,7 @@ $(document).ready(function () {
       } else if (type === "storage" && itemInventory === "main") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoStorage",
+          "http://koid-inventory/PutIntoStorage",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -756,7 +756,7 @@ $(document).ready(function () {
       } else if (type === "disc-property" && itemInventory === "main") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoDiscProperty",
+          "http://koid-inventory/PutIntoDiscProperty",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -765,7 +765,7 @@ $(document).ready(function () {
       } else if (type === "player" && itemInventory === "main") {
         disableInventory(500);
         $.post(
-          "http://jav_inventoryhud/PutIntoPlayer",
+          "http://koid-inventory/PutIntoPlayer",
           JSON.stringify({
             item: itemData,
             number: parseInt($("#count").val()),
@@ -831,7 +831,7 @@ $(document).ready(function () {
                   if (itemData.canRemove) {
                     disableInventory(300);
                     $.post(
-                      "http://jav_inventoryhud/DropItem",
+                      "http://koid-inventory/DropItem",
                       JSON.stringify({
                         item: itemData,
                         number: parseInt($("#count").val()),
@@ -865,7 +865,7 @@ $(document).ready(function () {
                     console.log("a");
                     disableInventory(300);
                     $.post(
-                      "http://jav_inventoryhud/GetNearPlayers",
+                      "http://koid-inventory/GetNearPlayers",
                       JSON.stringify({
                         item: itemData,
                       })
