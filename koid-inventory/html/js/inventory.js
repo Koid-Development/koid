@@ -8,24 +8,28 @@ Config.closeKeys = [113, 27, 90];
 
 let itemsClick = [];
 
+let inventoryItems = [];
+let fastInventoryItems = [];
+
+String.prototype.startsWith = function (matchstring) {
+  //if exact match return true
+  if (this == matchstring)
+      return true;
+
+  //Regex will have slower performance than a simple character by character match, but it's simpler to implement.
+  //The regex below will match all ascii chars from space to ~ in the ASCII table. See http://www.asciitable.com/. More regex patterns required to match extended chars like ë
+  matchstring = '^' + matchstring + '[\x20-\x7E]+$';
+      
+  var rgxp = new RegExp(matchstring);
+  return !!this.match(rgxp);
+};
+
+String.prototype.endsWith = function (matchstring) {
+  return reverse(this).startsWith(reverse(matchstring));
+};
+
 $(function () {
-  $("#boton-cerrar").hide();
-
   $(".menu-lateral").hide();
-
-  $("#boton-ropa").on("click", () => {
-    $(".inventory").css({ width: "23vw", transition: ".45s" });
-    $(".menu-lateral").show();
-    $("#boton-ropa").hide();
-    $("#boton-cerrar").show();
-  });
-
-  $("#boton-cerrar").on("click", () => {
-    $(".inventory").css({ width: "20vw", transition: ".45s" });
-    $(".menu-lateral").hide();
-    $("#boton-ropa").show();
-    $("#boton-cerrar").hide();
-  });
 
   $("#sombrero").click(function () {
     $.post("http://koid-inventory/sombrero", JSON.stringify({}));
@@ -109,6 +113,8 @@ window.addEventListener("message", function (event) {
     $(".item").remove();
   } else if (event.data.action == "setItems") {
     inventorySetup(event.data.itemList, event.data.fastItems);
+    inventoryItems = event.data.itemList;
+    fastInventoryItems = event.data.fastItems;
     itemsClick.push(event.data.itemList);
 
     /*$(".item").draggable({
@@ -237,34 +243,114 @@ function closeInventory() {
 
 function inventorySetup(items, fastItems) {
   $("#playerInventory").html("");
-  $.each(items, function (index, item) {
+  if ($(".info-categories > div.selected").length === 0) {
+    $(".info-categories > #all").first().addClass("selected");
+  }
+  console.log(items);
+  let itemsFiltered = items.filter(Boolean);
+  $.each(itemsFiltered, function (index, item) {
+    console.log(items);
     count = setCount(item);
 
-    $("#playerInventory").append(
-      '<div class="slot">' +
-        '<div id="item-' +
-        index +
-        '" class="item" style = "z-index: 444; background-image: url(\'img/items/' +
-        item.name +
-        ".png')\">" +
-        '<div class="item-count">' +
-        count +
-        "</div>" +
-        "</div>" +
-        '<div class="item-name-bg"></div>' +
-        '<div class="item-info">' +
-        ' <label class="item-displayname">' +
-        uppercaseConverter(item.name.replace("_", " ")) +
-        "</label>" +
-        ' <label class="item-weight">' +
-        item.weight +
-        " kg</label>" +
-        "</div>" +
-        "</div>"
-    );
+    $(".info-categories > div").each((i, element) => {
+      if ($(element).hasClass("selected")) {
+        switch (element.id) {
+          case "all":
+            $("#playerInventory").append(
+              '<div class="slot">' +
+                '<div id="item-' +
+                index +
+                '" class="item" style = "z-index: 444; background-image: url(\'img/items/' +
+                item.name +
+                ".png')\">" +
+                '<label class="item-displayname">' +
+                uppercaseConverter(item.name.replace("_", " ")) +
+                "</label>" +
+                '<div class="item-count">' +
+                count +
+                " x</label>" +
+                "</div>" +
+                "</div>" +
+                '<div class="item-name-bg"></div>' +
+                "</div>"
+            );
+            break;
+          case "drugs":
+            if (item.type === "item_drugs") {
+              $("#playerInventory").append(
+                '<div class="slot">' +
+                  '<div id="item-' +
+                  index +
+                  '" class="item" style = "z-index: 444; background-image: url(\'img/items/' +
+                  item.name +
+                  ".png')\">" +
+                  '<label class="item-displayname">' +
+                  uppercaseConverter(item.name.replace("_", " ")) +
+                  "</label>" +
+                  '<div class="item-count">' +
+                  count +
+                  " x</label>" +
+                  "</div>" +
+                  "</div>" +
+                  '<div class="item-name-bg"></div>' +
+                  "</div>"
+              );
+            }
+            break;
+          case "weapons":
+            if (item.type === "item_weapon") {
+              $("#playerInventory").append(
+                '<div class="slot">' +
+                  '<div id="item-' +
+                  index +
+                  '" class="item" style = "z-index: 444; background-image: url(\'img/items/' +
+                  item.name +
+                  ".png')\">" +
+                  '<label class="item-displayname">' +
+                  uppercaseConverter(item.name.replace("_", " ")) +
+                  "</label>" +
+                  '<div class="item-count">' +
+                  count +
+                  " x</label>" +
+                  "</div>" +
+                  "</div>" +
+                  '<div class="item-name-bg"></div>' +
+                  "</div>"
+              );
+            }
+            break;
+          case "consumables":
+            if (item.type === "item_consumable") {
+              $("#playerInventory").append(
+                '<div class="slot">' +
+                  '<div id="item-' +
+                  index +
+                  '" class="item" style = "z-index: 444; background-image: url(\'img/items/' +
+                  item.name +
+                  ".png')\">" +
+                  '<label class="item-displayname">' +
+                  uppercaseConverter(item.name.replace("_", " ")) +
+                  "</label>" +
+                  '<div class="item-count">' +
+                  count +
+                  " x</label>" +
+                  "</div>" +
+                  "</div>" +
+                  '<div class="item-name-bg"></div>' +
+                  "</div>"
+              );
+            }
+            break;
+        }
+      }
+    });
     $("#item-" + index).data("item", item);
     $("#item-" + index).data("inventory", "main");
   });
+
+  setTimeout(() => {
+    fireEvent(document.getElementById("playerInventory"), "change");
+  }, 905);
   $("#playerInventoryFastItems").html("");
   var i;
   for (i = 1; i < 6; i++) {
@@ -786,129 +872,217 @@ $(document).ready(function () {
   });
 
   setTimeout(() => {
-    $("#playerInventory > div").each((i, div) => {
-      $(div).click(function (event) {
-        if (!$(div).hasClass("holaquetal")) {
-          $(div).addClass("holaquetal");
-          $(div).find(".item").addClass("item-selected");
-          $(div).find(".item-count").hide();
-          $(div).find(".item-info").hide();
-          $(div).css("background-color", "rgba(192, 192, 192, 0.315)");
-          $(div)
-            .find(".item-selected")
-            .append(
-              '<div id="item-controls" class="controlsClick" style="animation: controlsAnim 0.3s cubic-bezier(0.64, 0, 0.78, 0) 0s 1 alternate both;">' +
-                ' <button class="control" id="drop">Tirar</button>' +
-                ' <button class="control" id="give">Dar</button>' +
-                ' <button class="control" id="equip">Equipar</button>' +
-                ' <input type="number" class="control" id="c" value="1" style="visibility: hidden;"/>' +
-                "</div>"
-            );
+    $(".info-categories > div").each((i, element) => {
+      $(element).click(function (event) {
+        $(".info-categories > div.selected").removeClass("selected");
+        $(element).addClass("selected");
 
-          $("#item-controls").each((i, element) => {
-            $(element).click(function (event) {
-              switch (event.target.id) {
-                case "drop":
-                  itemData = $(div).find(".item").data("item");
-                  console.log(itemData);
-
-                  if (
-                    itemData == undefined ||
-                    itemData.canRemove == undefined
-                  ) {
-                    return;
-                  }
-
-                  console.log("a");
-
-                  itemInventory = $(div).find(".item").data("inventory");
-                  console.log(itemInventory);
-
-                  if (itemInventory == undefined || itemInventory == "second") {
-                    return;
-                  }
-
-                  if (itemData.canRemove) {
-                    disableInventory(300);
-                    $.post(
-                      "http://koid-inventory/DropItem",
-                      JSON.stringify({
-                        item: itemData,
-                        number: parseInt($("#count").val()),
-                      })
-                    );
-                  }
-                  break;
-                case "give":
-                  itemData = $(div).find(".item").data("item");
-
-                  console.log("a");
-
-                  if (
-                    itemData == undefined ||
-                    itemData.canRemove == undefined
-                  ) {
-                    return;
-                  }
-
-                  console.log("a");
-
-                  itemInventory = $(div).find(".item").data("inventory");
-
-                  if (itemInventory == undefined || itemInventory == "second") {
-                    return;
-                  }
-
-                  console.log("a");
-
-                  if (itemData.canRemove) {
-                    console.log("a");
-                    disableInventory(300);
-                    $.post(
-                      "http://koid-inventory/GetNearPlayers",
-                      JSON.stringify({
-                        item: itemData,
-                      })
-                    );
-                  }
-                  break;
+        // let newItems = inventoryItems.forEach((item, index) => {
+        //   switch (element.id) {
+        //     case "all":
+        //       break;
+        //     case "consumables":
+        //       if (item.type !== "item_consumable") {
+        //         inventoryItems.splice(index, 1);
+        //       }
+        //       break;
+        //       case "drugs":
+        //         if (item.type !== "item_drugs") {
+        //           inventoryItems.splice(index, 1);
+        //         }
+        //         break;
+        //     case "weapons":
+        //       if (item.type !== "item_weapon") {
+        //         inventoryItems.splice(index, 1);
+        //       }
+        //       break;
+        //   }
+        // }).filter((item) => item !== undefined).toArray();
+        let itemsModified = inventoryItems.map((item, index) => {
+          switch (element.id) {
+            case "all":
+              break;
+            case "consumables":
+              if (item.type !== "item_consumable") {
+                return undefined;
               }
-            });
-          });
-        } else {
-          if ($(event.target).hasClass("control")) return;
-          $(div).removeClass("holaquetal");
-          $(div)
-            .find(".item-selected > #item-controls")
-            .css(
-              "animation",
-              "controlsExitAnim 0.3s cubic-bezier(0.32, 0, 0.67, 0) 0s 1 alternate both"
-            );
-          setTimeout(() => {
-            $(div).css("background-color", "#131214");
-            $(div).find(".item").css("opacity", "0");
-            $(div)
-              .find(".item")
-              .css(
-                "animation",
-                "selectedEntryAnim 0.4s cubic-bezier(0.32, 0, 0.67, 0) 0s 1 alternate both"
-              );
-            $(div)
-              .find(".item-info")
-              .css(
-                "animation",
-                "selectedEntryAnim 0.4s cubic-bezier(0.32, 0, 0.67, 0) 0s 1 alternate both"
-              );
-            $(".item-info").show();
-            $(div).find(".item").empty();
-            $(div).find(".item").removeClass("item-selected");
-            $(div).find(".item-count").show();
-          }, 300);
-        }
+              break;
+            case "drugs":
+              if (item.type !== "item_drugs") {
+                return undefined;
+              }
+              break;
+            case "weapons":
+              if (item.type !== "item_weapon") {
+                return undefined;
+              }
+              break;
+          }
+          return item;
+        });
+        inventorySetup(itemsModified, fastInventoryItems);
+        fireEvent(document.getElementById("playerInventory"), "change");
       });
     });
-  }, 1000);
+
+    $("#playerInventory").on("change", function (event) {
+      $("#playerInventory > div").each((i, div) => {
+        $(div).click(function (event) {
+          event.stopPropagation();
+          let target = $(event.target).prop("id").startsWith("item-") ? $(event.target).parent() : $(div).parent();
+          console.log(target);
+          if (!$(target).find(".item").hasClass("item-selected")) {
+            $(event.target).find(".item-count").hide();
+            $(event.target)
+              .find("#item-" + i + " > .item-displayname")
+              .hide();
+            $(event.target).find(".item").addClass("item-selected");
+            $(div).css("background-color", "rgba(247, 107, 240, 0.582)");
+            $(event.target)
+              .find(".item-selected")
+              .append(
+                '<div id="item-controls" class="controlsClick" style="animation: myAnim 1s ease 0s 1 normal forwards;">' +
+                  ' <button class="control" id="use">Usar</button>' +
+                  ' <button class="control" id="drop">Tirar</button>' +
+                  ' <button class="control" id="give">Dar</button>' +
+                  ' <button class="control" id="equip">Equipar</button>' +
+                  ' <input type="number" class="control" id="c" value="1" style="visibility: hidden;"/>' +
+                  "</div>"
+              );
+
+            $(event.target).find("#item-controls").each((i, element) => {
+              $(element).click(function (event) {
+                switch (event.target.id) {
+                  case "drop":
+                    $(".cantidad").show();
+                    // itemData = $(div).find(".item").data("item");
+                    // console.log(itemData);
+
+                    // if (
+                    //   itemData == undefined ||
+                    //   itemData.canRemove == undefined
+                    // ) {
+                    //   return;
+                    // }
+
+                    // console.log("a");
+                    // console.log("b");
+                    // console.log("c");
+
+                    // itemInventory = $(div).find(".item").data("inventory");
+                    // console.log(itemInventory);
+
+                    // if (itemInventory == undefined || itemInventory == "second") {
+                    //   return;
+                    // }
+
+                    // if (itemData.canRemove) {
+                    //   disableInventory(300);
+                    //   $.post(
+                    //     "http://koid-inventory/DropItem",
+                    //     JSON.stringify({
+                    //       item: itemData,
+                    //       number: parseInt($("#count").val()),
+                    //     })
+                    //   );
+                    // }
+                    break;
+                  case "give":
+                    itemData = $(div).find(".item").data("item");
+
+                    if (
+                      itemData == undefined ||
+                      itemData.canRemove == undefined
+                    ) {
+                      return;
+                    }
+
+                    itemInventory = $(div).find(".item").data("inventory");
+
+                    if (
+                      itemInventory == undefined ||
+                      itemInventory == "second"
+                    ) {
+                      return;
+                    }
+
+                    if (itemData.canRemove) {
+                      disableInventory(300);
+                      $.post(
+                        "http://koid-inventory/GetNearPlayers",
+                        JSON.stringify({
+                          item: itemData,
+                        })
+                      );
+                    }
+                    break;
+                  case "drop":
+                    console.log($(".cantidad").show());
+                    break;
+                }
+              });
+            });
+          } else {
+            event.stopPropagation();
+            // $("#playerInventory > div:nth-child(" + (i + 1) + ")").removeClass("pointed");
+            // $(div).removeClass("pointed");
+            // $(event.target).removeClass("pointed");
+            //div.classList.remove("pointed");
+            if ($(event.target).hasClass("control")) return;
+            if ($(".cantidad").is(":visible")) {
+              $(".cantidad").css(
+                "animation",
+                "exitAmountAnimation .75s cubic-bezier(0.11, 0, 0.5, 0) 1s 1 normal forwards"
+              );
+            }
+
+            const itemSelector = "#item-" + i;
+            const itemControlsSelector = itemSelector + " > .item-selected > #item-controls";
+            const itemDisplayNameSelector = itemSelector + " > .item-displayname";
+            const itemCountSelector = itemSelector + " > .item-count";
+            
+            $(itemControlsSelector).css("animation", "myAnim2 1s ease 0s 1 normal forwards");
+            setTimeout(() => {
+              $(div).css("background-color", "rgba(247, 107, 240, 0.582)");
+              $(itemSelector).css("animation", "myAnim2 .4s ease 0s 1 normal forwards");
+              $(itemDisplayNameSelector).css("animation", "myAnim2 .4s ease 0s 1 normal forwards");
+            
+              setTimeout(() => {
+                $(itemControlsSelector).css("animation", "");
+                $(itemSelector).css("animation", "myAnim .4s ease 0s 1 normal forwards");
+                $(itemDisplayNameSelector).css("animation", "myAnim .4s ease 0s 1 normal forwards");
+            
+                $(itemSelector + " > #item-controls").remove();
+                $(itemSelector).removeClass("item-selected");
+
+                $(itemDisplayNameSelector).show();
+                $(itemCountSelector).show();
+
+                setTimeout(() => {
+                  $(itemSelector).css("animation", "");
+                  $(itemDisplayNameSelector).css("animation", "");
+                }, 400);
+              }, 400);
+            }, 300);
+          }
+        });
+      });
+    });
+  }, 905);
 });
+
+function fireEvent(element, event) {
+  if (document.createEventObject) {
+    // dispatch for IE
+    var evt = document.createEventObject();
+    return element.fireEvent("on" + event, evt);
+  } else {
+    // dispatch for firefox + others
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent(event, true, true); // event type,bubbling,cancelable
+    return !element.dispatchEvent(evt);
+  }
+}
 
 function uppercaseConverter(str) {
   var splitStr = str.toLowerCase().split(" ");

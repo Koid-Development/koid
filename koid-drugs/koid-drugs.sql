@@ -1,0 +1,22 @@
+INSERT IGNORE INTO `items` (name, label, weight, rare, can_remove)
+VALUES
+    ('marijuana', 'Marihuana', 1, 0, 1),
+    ('cocaine', 'Cocaina', 1, 0, 1),
+    ('meth', 'Methanfetamina', 1, 0, 1),
+    ('opium', 'Opio', 1, 0, 1),
+    ('mdma', 'Mdma', 1, 0, 1),
+    ('lsd', 'Lsd', 1, 0, 1),
+    ('fentanyl', 'Fentanilo', 1, 0, 1),
+    ('crystal', 'Cristal', 1, 0, 1),
+    ('poper', 'Poper', 1, 0, 1),
+    ('tusi', 'Tusi', 1, 0, 1),
+    ('marijuana_p', 'Marihuana procesada', 1, 0, 1),
+    ('cocaine_p', 'Cocaina procesada', 1, 0, 1),
+    ('meth_p', 'Methanfetamina procesada', 1, 0, 1),
+    ('opium_p', 'Opio procesada', 1, 0, 1),
+    ('mdma_p', 'MDMA procesada', 1, 0, 1),
+    ('lsd_p', 'LSD procesada', 1, 0, 1),
+    ('fentanyl_p', 'Fentanilo procesada', 1, 0, 1),
+    ('crystal_p', 'Cristal procesada', 1, 0, 1),
+    ('poper_p', 'Poper procesada', 1, 0, 1),
+    ('tusi_p', 'Tusi procesada', 1, 0, 1);

@@ -15,6 +15,10 @@ CreateThread(function()
     end
 end)
 
+RegisterCommand("openInventory", function()
+    openInventory()
+end, false)
+
 function openInventory()
     loadPlayerInventory()
     isInInventory = true
@@ -409,7 +413,13 @@ function loadPlayerInventory()
                     if inventory[key].count <= 0 then
                         inventory[key] = nil
                     else
-                        inventory[key].type = "item_standard"
+                        if Config.ItemCategories.Weapons.inList(inventory[key].name) then
+                            inventory[key].type = "item_weapon"
+                        elseif Config.ItemCategories.Consumables.inList(inventory[key].name) then
+                            inventory[key].type = "item_consumable"
+                        elseif Config.ItemCategories.Drugs.inList(inventory[key].name) then
+                            inventory[key].type = "item_drugs"
+                        end
                         table.insert(items, inventory[key])
                     end
                 end

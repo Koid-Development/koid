@@ -20,13 +20,52 @@ Config.CloseUiItems = {"sportlunch",
                     "coke_streak", 
                     "weedseed",
                     "beer"
-}   
+}
+
+Config.ItemCategories = {
+	Weapons = {
+		"WEAPON_PISTOL",
+		"WEAPON_SMG",
+		"WEAPON_SNSPISTOL",
+		"WEAPON_SPECIALCARBINE",
+		"WEAPON_COMPACTRIFLE",
+		"WEAPON_MINIGUN",
+		"WEAPON_HEAVYSHOTGUN",
+		"WEAPON_COMBATMG",
+		"WEAPON_SMOKEGRENADE",
+		"WEAPON_BZGAS",
+		"WEAPON_STUNGUN",
+		"WEAPON_MARKSMANPISTOL",
+		"WEAPON_CARBINERIFLE",
+		"WEAPON_COMBATPDW",
+		"WEAPON_DBSHOTGUN",
+		"WEAPON_APPISTOL",
+		"WEAPON_HEAVYSNIPER",
+		"WEAPON_MUSKET",
+		"WEAPON_ADVANCEDRIFLE",
+		"WEAPON_MARKSMANRIFLE",
+		"WEAPON_STICKYBOMB",
+		"WEAPON_ASSAULTSHOTGUN",
+		"WEAPON_COMBATPISTOL",
+		"WEAPON_DOUBLEACTION",
+		"WEAPON_VINTAGEPISTOL",
+		"WEAPON_MACHINEPISTOL",
+		"WEAPON_SNIPERRIFLE",
+		"WEAPON_ASSAULTRIFLE",
+		"WEAPON_MOLOTOV",
+		"WEAPON_GUSENBERG"
+	},
+	Consumables = {
+		"COCACOLA",
+	},
+	Drugs = {
+		"CLOTH",
+		"COCAINE",
+		"CANNABIS"
+	}
+}
 
 Config.localWeight = {
-    bread = 20,
-    water = 20,
-	raisin = 20,
-	vine = 40,
     WEAPON_SMG = 15000,
 	WEAPON_PISTOL = 30,
 	WEAPON_SNSPISTOL = 10000,
