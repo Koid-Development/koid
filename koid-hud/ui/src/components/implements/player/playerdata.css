@@ -1,0 +1,54 @@
+/*############################################*/
+/*#########                          #########*/
+/*#########          DATA            #########*/
+/*#########          DATA            #########*/
+/*#########          DATA            #########*/
+/*#########                          #########*/
+/*############################################*/
+
+#playerdata {
+    margin-right: 1vw;
+    margin-top: 1vw;
+}
+
+#money {
+    display: grid;
+    grid-template-columns: repeat(3, 5vw);
+    grid-template-rows: repeat(0, 1vw);
+    justify-content: right;
+    gap: 1.5vw;
+}
+#money > div {
+    background-color: rgba(0, 0, 0, 0.767);
+    width: 6vw;
+    height: 1.5vw;
+    border-radius: 0.4vw;
+
+    display: flex;
+}
+
+#money > div > span {
+    font-size: medium;
+    color: #f4f7fe;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
+#money > div > .as {
+    text-align: center;
+    margin-top: 0.05vw;
+    width: 1.4vw;
+    height: 1.4vw;
+    background-color: rgba(34, 34, 34, 0.8);
+    border-radius: 0.4vw;
+}
+
+.as > i {
+    top: 1px;
+    color: #f4f7fe;
+}
+
+#money:last-child {
+    display: grid;
+    justify-items: end;
+}

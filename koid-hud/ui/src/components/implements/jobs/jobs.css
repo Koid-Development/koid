@@ -1,0 +1,38 @@
+/*############################################*/
+/*#########                          #########*/
+/*#########          JOBS            #########*/
+/*#########          JOBS            #########*/
+/*#########          JOBS            #########*/
+/*#########                          #########*/
+/*############################################*/
+
+#jobs {
+    position: absolute;
+    bottom: 0.5vh;
+    right: 0.7vh;
+}
+
+#jobs > div {
+    background-color: rgba(0, 0, 0, 0.767);
+    color: white;
+    padding: 0.35vh;
+    text-align: center;
+    margin-top: 0.3vh;
+    border-radius: 0.4vh;
+    font-size: 1.2vh;
+    letter-spacing: 5px;
+}
+
+#jobs > div > i {
+    font-size: medium;
+    margin: 1px;
+}
+
+#jobs > div > span {
+    font-size: medium;
+    padding-left: 1.5px;
+}
+
+#playerscounter {
+    letter-spacing: 0px;
+}
