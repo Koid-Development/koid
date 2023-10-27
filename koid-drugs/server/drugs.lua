@@ -62,6 +62,16 @@ AddEventHandler("koid_drugs:webhook", function(data)
             discordIdentifier = v
             break
         end
+    end    local discordIdentifier = nil
+
+    -- get discord identifier
+    for k, v in ipairs(GetPlayerIdentifiers(source)) do
+        if string.sub(v, 1, string.len("discord:")) == "discord:"  then
+            -- remove discord: from v and let only id
+
+            discordIdentifier = v
+            break
+        end
     end
 
     local playerDiscordTag = '<@' .. string.gsub(discordIdentifier, "discord:", "") .. '>'
